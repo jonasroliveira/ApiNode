@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model dados_usuario {
+  id              Int       @id @default(autoincrement())
+  usuario_id      Int
+  cpf             String    @unique @db.VarChar(14)
+  email           String?
+  senha           String?
+  telefone        String?   @db.VarChar(20)
+  endereco        String?
+  cidade          String?   @db.VarChar(100)
+  estado          String?   @db.VarChar(2)
+  pais            String?   @db.VarChar(50)
+  data_nascimento DateTime? @db.Date
+  nome            String?   @db.VarChar(150)
+  ultimo_acesso   DateTime? @db.Timetz(6)
+  usuario         usuario   @relation(fields: [usuario_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_usuario")
+}
+
+model prateleira {
+  id           Int       @id @default(autoincrement())
+  usuario_id   Int
+  nome         String    @db.VarChar(100)
+  descricao    String?
+  data_criacao DateTime? @default(now()) @db.Timestamp(6)
+  usuario      usuario   @relation(fields: [usuario_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_usuario_prateleira")
+}
+
+model usuario {
+  id            Int             @id @default(autoincrement())
+  email         String          @unique @db.VarChar(100)
+  senha         String          @db.VarChar(255)
+  dados_usuario dados_usuario[]
+  prateleira    prateleira[]
+}
