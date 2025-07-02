@@ -15,8 +15,7 @@ interface RegisterUserData {
     nome?: string;
 }
 
-export async function registerUser(data: RegisterUserData) {
-    // Verificar se o email já existe na tabela usuario
+export async function registerUser(data: RegisterUserData) {    
     const emailExists = await prisma.usuario.findUnique({
         where: { email: data.email },
     });

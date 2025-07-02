@@ -11,8 +11,6 @@ model dados_usuario {
   id              Int       @id @default(autoincrement())
   usuario_id      Int
   cpf             String    @unique @db.VarChar(14)
-  email           String?
-  senha           String?
   telefone        String?   @db.VarChar(20)
   endereco        String?
   cidade          String?   @db.VarChar(100)

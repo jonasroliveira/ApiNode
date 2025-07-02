@@ -6,7 +6,7 @@ import { registerUser } from '../services/registerUser.service';
  * /register:
  *   post:
  *     summary: Registrar um novo usuário e seus dados complementares
- *     tags: [Auth]
+ *     tags: [Register]
  *     requestBody:
  *       required: true
  *       content:
