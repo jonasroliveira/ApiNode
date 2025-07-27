@@ -4,7 +4,7 @@ import { register } from './controllers/register.controller';
 
 const app = express();
 app.use(express.json());
-
+app.disable('x-powered-by');
 app.post('/register', register);
 
 setupSwagger(app);
