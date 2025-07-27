@@ -63,8 +63,7 @@ export async function registerUser(data: RegisterUserData) {
       data.data_nascimento ?? null,
       data.nome ?? ""
     );
-  } catch (error: any) {
-    console.error("Erro ao executar a procedure:", error);
+  } catch (error: any) {    
     console.error("Erro detalhado:", error);
     throw new Error("Erro ao cadastrar usuário");
   }
